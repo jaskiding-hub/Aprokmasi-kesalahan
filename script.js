@@ -124,22 +124,8 @@ function hitungPerkalian() {
   )}\nMin: ${min.toFixed(2)}`;
 }
 
-function hitungToleransi() {
-  const terukur = parseFloat(document.getElementById("nilaiTerukur").value);
-  const standar = parseFloat(document.getElementById("nilaiStandar").value);
-  const batas = parseFloat(document.getElementById("batasToleransi").value);
-
-  const toleransi = ((terukur - standar) / standar) * 100;
-  const status = Math.abs(toleransi) <= batas ? "DITERIMA" : "DITOLAK";
-
-  document.getElementById(
-    "hasilToleransi"
-  ).innerText = `Toleransi: ${toleransi.toFixed(
-    2
-  )}%\nBatas: ±${batas}%\nStatus: ${status}`;
-}
-
 function resetCalc(inputId, hasilId) {
   document.getElementById(inputId).value = "";
   document.getElementById(hasilId).innerText = "";
 }
+
