@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Kalkulator Matematika</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Tombol dark light -->
+    <button id="toggle-theme" class="theme-toggle">🌙</button>
+
+    <!-- Left Menu Panel -->
+    <div class="panel left-panel">
+      <div class="menu-group">
+        <div class="menu-item">Pembulatan</div>
+        <div class="submenu">
+          <div class="submenu-item active" onclick="switchMode('satuan', this)">
+            Satuan Terdekat
+          </div>
+          <div class="submenu-item" onclick="switchMode('desimal', this)">
+            Desimal
+          </div>
+          <div class="submenu-item" onclick="switchMode('penting', this)">
+            Angka Penting
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-item">Kesalahan Pengukuran</div>
+        <div class="submenu">
+          <div class="submenu-item" onclick="switchMode('mutlak', this)">
+            Kesalahan Mutlak
+          </div>
+          <div class="submenu-item" onclick="switchMode('relatif', this)">
+            Kesalahan Relatif
+          </div>
+          <div class="submenu-item" onclick="switchMode('persen', this)">
+            Persentase Kesalahan
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-item">Operasi Hasil Pengukuran</div>
+        <div class="submenu">
+          <div class="submenu-item" onclick="switchMode('penjumlahan', this)">
+            Penjumlahan
+          </div>
+          <div class="submenu-item" onclick="switchMode('perkalian', this)">
+            Perkalian
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-item" onclick="switchMode('toleransi', this)">
+          Toleransi Kesalahan
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Explanation Panel -->
+    <div class="panel center-panel">
+      <div class="content-section active" id="content-satuan">
+        <h3>Pembulatan ke Satuan Terdekat</h3>
+        <p>
+          Pembulatan ke satuan terdekat adalah proses membulatkan angka ke
+          bilangan bulat yang paling dekat. Angka dengan desimal 0.5 atau lebih
+          akan dibulatkan ke atas, sedangkan kurang dari 0.5 akan dibulatkan ke
+          bawah.
+        </p>
+
+        <div class="formula">
+          Aturan Pembulatan Jika digit pertama setelah koma ≥ 5, bulatkan ke
+          atas. Jika < 5, bulatkan ke bawah. Contoh: 3.7 → 4, 3.4 → 3, 3.5 → 4
+        </div>
+      </div>
+      <div class="content-section" id="content-desimal">
+        <h3>Pembulatan Desimal</h3>
+        <p>
+          Pembulatan desimal memungkinkan kita menentukan jumlah digit di
+          belakang koma yang ingin dipertahankan. Proses ini penting dalam
+          perhitungan ilmiah untuk menjaga presisi yang sesuai.
+        </p>
+        <div class="formula">Contoh: 3.14159 → 3.14 (2 desimal)</div>
+      </div>
+      <div class="content-section" id="content-penting">
+        <h3>Angka Penting</h3>
+        <p>
+          Angka penting adalah digit yang memberikan informasi tentang presisi
+          suatu pengukuran. Aturan angka penting membantu menentukan presisi
+          hasil perhitungan.
+        </p>
+        <div class="formula">
+          Aturan: Semua digit bukan nol adalah penting, nol di antara digit
+          bukan nol adalah penting
+        </div>
+      </div>
+      <div class="content-section" id="content-mutlak">
+        <h3>Kesalahan Mutlak</h3>
+        <p>
+          Kesalahan mutlak (Δx) adalah setengah dari nilai satuan terkecil alat
+          ukur. Ini menunjukkan ketidakpastian maksimum dalam pengukuran.
+        </p>
+        <div class="formula">Kesalahan Mutlak = ½ × satuan terkecil alat ukur</div>
+      </div>
+      <div class="content-section" id="content-relatif">
+        <h3>Kesalahan Relatif</h3>
+        <p>
+          Kesalahan relatif adalah perbandingan antara kesalahan mutlak dengan
+          nilai pengukuran. Ini memberikan gambaran seberapa signifikan
+          kesalahan tersebut.
+        </p>
+        <div class="formula">Kesalahan Relatif = Salah mutlak (Δx) / Hasil Pengukuran</div>
+      </div>
+      <div class="content-section" id="content-persen">
+        <h3>Persentase Kesalahan</h3>
+        <p>
+          Persentase kesalahan mengekspresikan kesalahan relatif dalam bentuk
+          persentase, memudahkan interpretasi tingkat akurasi pengukuran.
+        </p>
+        <div class="formula">
+          Persentase Kesalahan = Kesalahan Relatif x 100%
+        </div>
+      </div>
+      <div class="content-section" id="content-penjumlahan">
+        <h3>Penjumlahan Pengukuran</h3>
+        <p>
+          Dalam penjumlahan hasil pengukuran, kesalahan mutlak dijumlahkan
+          secara langsung untuk mendapatkan kesalahan total.
+        </p>
+        <div class="formula">(A ± ΔA) + (B ± ΔB) = (A + B) ± (ΔA + ΔB)</div>
+      </div>
+      <div class="content-section" id="content-perkalian">
+        <h3>Perkalian Pengukuran</h3>
+        <p>
+          Dalam perkalian, kita menghitung nilai maksimum dan minimum dari hasil
+          perkalian dengan mempertimbangkan kesalahan.
+        </p>
+        <div class="formula">
+          (A ± ΔA) × (B ± ΔB) = hasil dengan range [min, max]
+        </div>
+      </div>
+      <div class="content-section" id="content-toleransi">
+        <h3>Toleransi Kesalahan</h3>
+        <p>
+          Toleransi kesalahan adalah batas maksimum penyimpangan yang dapat
+          diterima dalam suatu pengukuran atau proses. Toleransi ini penting
+          dalam kontrol kualitas dan standarisasi.
+        </p>
+        <h4>Jenis Toleransi</h4>
+        <p>
+          Toleransi dapat dinyatakan dalam nilai absolut, persentase, atau range
+          tertentu tergantung pada kebutuhan aplikasi.
+        </p>
+        <div class="formula">
+          Toleransi = (Nilai Terukur - Nilai Standar) / Nilai Standar × 100%
+          Status: DITERIMA jika |Toleransi| ≤ Batas Toleransi
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Calculator Panel -->
+    <div class="panel right-panel">
+      <div class="kalkulator active" id="calc-satuan">
+        <h3>Pembulatan Satuan</h3>
+        <input type="number" id="nilaisatuan" placeholder="Nilai" />
+        <button onclick="pembulatansatuan()">Hitung</button>
+        <div class="hasil" id="hasilsatuan"></div>
+      </div>
+
+      <div class="kalkulator" id="calc-desimal">
+        <h3>Pembulatan Desimal</h3>
+        <input type="number" id="inputdesimal" placeholder="Nilai" />
+        <input type="number" id="jumlahdesimal" placeholder="Jumlah desimal" />
+        <button onclick="pembulatanDesimal()">Hitung</button>
+        <div class="hasil" id="hasildesimal"></div>
+      </div>
+
+      <div class="kalkulator" id="calc-penting">
+        <h3>Angka Penting</h3>
+        <input type="number" id="inputangka3" placeholder="Nilai" />
+        <input type="number" id="jumlahangkapenting" placeholder="Jumlah angka penting" />
+        <button onclick="pembulatanangkapenting()">Hitung</button>
+        <div class="hasil" id="hasilAP"></div>
+      </div>
+      <div class="kalkulator" id="calc-mutlak">
+        <h3>Kesalahan Mutlak</h3>
+        <input
+          type="number"
+          id="satuanTerkecil"
+          placeholder="Satuan terkecil"
+        />
+        <button onclick="hitungMutlak()">Hitung</button>
+        <div class="hasil" id="hasilMutlak"></div>
+      </div>
+      <div class="kalkulator" id="calc-relatif">
+        <h3>Kesalahan Relatif</h3>
+        <input type="number" id="kesalahanMutlak" placeholder="Salah Mutlak" />
+        <input type="number" id="nilaiPengukuran" placeholder="Hasil Pengukuran" />
+        <button onclick="hitungRelatif()">Hitung</button>
+        <div class="hasil" id="hasilRelatif"></div>
+      </div>
+      <div class="kalkulator" id="calc-persen">
+        <h3>Persentase Kesalahan</h3>
+        <input type="number" id="kesalahanRelatif" placeholder="Relatif" />
+        <button onclick="hitungPersen()">Hitung</button>
+        <div class="hasil" id="hasilPersen"></div>
+      </div>
+      <div class="kalkulator" id="calc-penjumlahan">
+        <h3>Penjumlahan</h3>
+        <input type="number" id="nilaiA" placeholder="Nilai A" />
+        <input type="number" id="errorA" placeholder="Error A" />
+        <input type="number" id="nilaiB" placeholder="Nilai B" />
+        <input type="number" id="errorB" placeholder="Error B" />
+        <button onclick="hitungPenjumlahan()">Hitung</button>
+        <div class="hasil" id="hasilPenjumlahan"></div>
+      </div>
+      <div class="kalkulator" id="calc-perkalian">
+        <h3>Perkalian</h3>
+        <input type="number" id="nilaiKA" placeholder="Nilai A" />
+        <input type="number" id="errorKA" placeholder="Error A" />
+        <input type="number" id="nilaiKB" placeholder="Nilai B" />
+        <input type="number" id="errorKB" placeholder="Error B" />
+        <button onclick="hitungPerkalian()">Hitung</button>
+        <div class="hasil" id="hasilPerkalian"></div>
+      </div>
+      <div class="kalkulator" id="calc-toleransi">
+        <h3>Toleransi Kesalahan</h3>
+        <input type="number" id="nilaiTerukur" placeholder="Nilai Terukur" />
+        <input type="number" id="nilaiStandar" placeholder="Nilai Standar" />
+        <input
+          type="number"
+          id="batasToleransi"
+          placeholder="Batas Toleransi (%)"
+        />
+        <button onclick="hitungToleransi()">Hitung</button>
+        <div class="hasil" id="hasilToleransi"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
